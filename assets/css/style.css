@@ -1,0 +1,3222 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap');
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #efe5d0;
+    color: #3c3024;
+    font-family: "Playfair Display", serif;
+    overflow-x: hidden;
+}
+
+
+/* ==========================================
+   FAIRY TALE OPENING
+========================================== */
+
+.fairy-gate {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    z-index: 9999;
+
+    overflow: hidden;
+
+    background: #182018;
+}
+
+
+/* ==========================================
+   BACKGROUND SCENE
+========================================== */
+
+.fairy-scene {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(35, 49, 31, 0.18),
+            rgba(28, 34, 23, 0.08)
+        ),
+        url("../../assets/images/bg-opening.png");
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.05);
+
+    animation:
+        sceneReveal 2s ease forwards;
+}
+
+
+@keyframes sceneReveal {
+
+    from {
+        transform: scale(1.15);
+        opacity: 0.5;
+    }
+
+    to {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+}
+
+
+/* ==========================================
+   GOLDEN LIGHT
+========================================== */
+
+.fairy-light {
+    position: absolute;
+
+    left: 50%;
+    top: 48%;
+
+    width: 60vw;
+    height: 60vw;
+
+    max-width: 800px;
+    max-height: 800px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 222, 158, 0.32),
+            rgba(255, 219, 145, 0.12) 35%,
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+
+    animation:
+        lightPulse 4s ease-in-out infinite;
+}
+
+
+@keyframes lightPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+
+}
+
+
+/* ==========================================
+   OPENING PHOTO
+========================================== */
+
+.opening-photo {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 30px;
+    height: 40px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.1);
+
+    z-index: 5;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 40px rgba(255, 220, 150, 0.5);
+
+    /* Foto BELUM bergerak */
+    animation: photoReveal 3.8s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        2.7s
+        forwards;
+}
+
+
+.opening-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+@keyframes photoReveal {
+
+    /* Foto masih kecil */
+    0% {
+        width: 30px;
+        height: 40px;
+
+        border-radius: 50%;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.1);
+
+        opacity: 0;
+    }
+
+    /* Mulai muncul */
+    10% {
+        opacity: 1;
+    }
+
+    /* Membesar */
+    55% {
+        width: 45vw;
+        height: 60vw;
+
+        max-width: 550px;
+        max-height: 750px;
+
+        border-radius: 45%;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    /* Full screen */
+    100% {
+        width: 100vw;
+        height: 100vh;
+
+        border-radius: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        opacity: 1;
+    }
+}
+
+/* ==========================================
+   FAIRY GATE DOORS
+========================================== */
+
+.fairy-gate-door {
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    z-index: 10;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(21, 29, 19, 0.96),
+            rgba(54, 67, 43, 0.88),
+            rgba(25, 33, 21, 0.96)
+        );
+
+    box-shadow:
+        inset 0 0 80px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 2.2s
+        cubic-bezier(
+            0.77,
+            0,
+            0.18,
+            1
+        );
+}
+
+
+/* kiri */
+
+.gate-left {
+    left: 0;
+
+    transform-origin: left center;
+
+    border-right:
+        2px solid rgba(
+            214,
+            184,
+            111,
+            0.7
+        );
+
+    border-radius:
+        0 20% 20% 0;
+}
+
+
+/* kanan */
+
+.gate-right {
+    right: 0;
+
+    transform-origin: right center;
+
+    border-left:
+        2px solid rgba(
+            214,
+            184,
+            111,
+            0.7
+        );
+
+    border-radius:
+        20% 0 0 20%;
+}
+
+
+/* ==========================================
+   METAL GATE
+========================================== */
+
+.gate-metal {
+    position: absolute;
+
+    top: 5%;
+    bottom: 5%;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content:
+        space-evenly;
+
+    align-items: stretch;
+}
+
+
+.gate-metal span {
+    width: 3px;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #b89a59 8%,
+            #e4c77c 50%,
+            #927743 92%,
+            transparent
+        );
+
+    box-shadow:
+        0 0 5px rgba(
+            229,
+            199,
+            124,
+            0.4
+        );
+}
+
+
+.gate-metal::before,
+.gate-metal::after {
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+    right: 8%;
+
+    height: 45%;
+
+    border:
+        2px solid
+        rgba(
+            190,
+            160,
+            93,
+            0.8
+        );
+
+    border-radius: 50%;
+
+    transform:
+        perspective(300px)
+        rotateX(15deg);
+}
+
+
+.gate-metal::before {
+    top: 10%;
+}
+
+
+.gate-metal::after {
+    bottom: 10%;
+}
+
+
+/* ==========================================
+   VINES
+========================================== */
+
+.gate-vines {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.9;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 15%,
+            rgba(101, 127, 73, 0.75),
+            transparent 8%
+        ),
+        radial-gradient(
+            ellipse at 80% 25%,
+            rgba(80, 108, 62, 0.7),
+            transparent 9%
+        ),
+        radial-gradient(
+            ellipse at 15% 75%,
+            rgba(110, 134, 76, 0.65),
+            transparent 10%
+        ),
+        radial-gradient(
+            ellipse at 90% 80%,
+            rgba(91, 119, 67, 0.65),
+            transparent 10%
+        );
+}
+
+
+.gate-vines::before,
+.gate-vines::after {
+    content: "❧";
+
+    position: absolute;
+
+    font-size: 150px;
+
+    color: rgba(
+        91,
+        119,
+        67,
+        0.7
+    );
+
+    text-shadow:
+        0 0 20px rgba(
+            70,
+            100,
+            55,
+            0.4
+        );
+}
+
+
+.gate-vines::before {
+    top: 8%;
+    left: 5%;
+
+    transform: rotate(-25deg);
+}
+
+
+.gate-vines::after {
+    bottom: 5%;
+    right: 5%;
+
+    transform: rotate(155deg);
+}
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+.fairy-particles {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+.fairy-particles i {
+    position: absolute;
+
+    font-style: normal;
+
+    color: #fff2c9;
+
+    text-shadow:
+        0 0 12px #ffe3a1;
+
+    animation:
+        particleFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+.fairy-particles i:nth-child(1) {
+    left: 15%;
+    top: 22%;
+}
+
+.fairy-particles i:nth-child(2) {
+    left: 30%;
+    top: 70%;
+
+    animation-delay: 1s;
+}
+
+.fairy-particles i:nth-child(3) {
+    right: 15%;
+    top: 30%;
+
+    animation-delay: 1.5s;
+}
+
+.fairy-particles i:nth-child(4) {
+    right: 27%;
+    bottom: 20%;
+
+    animation-delay: 2s;
+}
+
+.fairy-particles i:nth-child(5) {
+    left: 42%;
+    top: 15%;
+
+    animation-delay: 0.7s;
+}
+
+.fairy-particles i:nth-child(6) {
+    right: 40%;
+    top: 70%;
+
+    animation-delay: 2.4s;
+}
+
+.fairy-particles i:nth-child(7) {
+    left: 8%;
+    top: 50%;
+
+    animation-delay: 1.8s;
+}
+
+.fairy-particles i:nth-child(8) {
+    right: 8%;
+    top: 58%;
+
+    animation-delay: 3s;
+}
+
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(0.8);
+
+        opacity: 0.2;
+    }
+
+    50% {
+        transform:
+            translateY(-20px)
+            scale(1.3);
+
+        opacity: 1;
+    }
+}
+
+
+/* ==========================================
+   OPENING COMPLETE
+========================================== */
+
+.fairy-gate.open .gate-left {
+    transform:
+        translateX(-105%)
+        rotateY(-8deg);
+}
+
+
+.fairy-gate.open .gate-right {
+    transform:
+        translateX(105%)
+        rotateY(8deg);
+}
+
+
+.fairy-gate.open {
+    pointer-events: none;
+}
+
+
+.fairy-gate.open .fairy-scene {
+    transform: scale(1.18);
+    transition: transform 2.5s ease;
+}
+
+
+/* ==========================================
+   MAIN COVER
+========================================== */
+
+.main-invitation {
+    position: relative;
+
+    min-height: 100svh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(46, 61, 39, 0.22),
+            rgba(236, 224, 199, 0.88)
+        ),
+        #d8c8aa;
+}
+
+
+.main-invitation.show {
+    display: flex;
+
+    animation:
+        coverReveal 1.8s ease;
+}
+
+
+@keyframes coverReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ==========================================
+   COVER CONTENT
+========================================== */
+
+.cover-content {
+    position: relative;
+
+    width: 90%;
+    max-width: 720px;
+
+    padding: 50px 20px;
+
+    z-index: 2;
+}
+
+
+.cover-subtitle {
+    font-family: "Cinzel", serif;
+
+    font-size: 11px;
+
+    letter-spacing: 6px;
+
+    color: #77613e;
+}
+
+
+.cover-content h1 {
+    margin-top: 20px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size:
+        clamp(65px, 11vw, 120px);
+
+    font-weight: 400;
+
+    line-height: 0.9;
+
+    color: #3d4a31;
+
+    text-shadow:
+        0 3px 15px
+        rgba(255, 255, 255, 0.5);
+}
+
+
+.cover-content h1 span {
+    display: block;
+
+    margin: 15px 0;
+
+    font-size: 45px;
+
+    color: #a88a50;
+}
+
+
+.cover-ornament {
+    margin: 25px 0;
+
+    font-size: 38px;
+
+    color: #a88a50;
+}
+
+
+.cover-date {
+    font-family: "Cinzel", serif;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    color: #655238;
+}
+
+
+.cover-quote {
+    max-width: 450px;
+
+    margin: 30px auto;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+    color: #6c5a42;
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.magic-button {
+    padding: 14px 28px;
+
+    border:
+        1px solid #a88a50;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 250, 237, 0.55);
+
+    color: #6e5736;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+.magic-button:hover {
+    transform: translateY(-3px);
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 10px 30px
+        rgba(90, 72, 40, 0.18);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .opening-photo {
+        animation-duration: 4.5s;
+    }
+
+    .gate-metal span {
+        width: 2px;
+    }
+
+    .gate-vines::before,
+    .gate-vines::after {
+        font-size: 100px;
+    }
+
+    .cover-content h1 {
+        font-size: 68px;
+    }
+
+    .cover-content h1 span {
+        font-size: 36px;
+    }
+
+}
+
+/* ==========================================
+   FAIRY TALE COVER
+========================================== */
+
+.main-invitation {
+    position: relative;
+
+    min-height: 100svh;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(239, 234, 214, 0.88),
+            rgba(213, 221, 193, 0.96)
+        );
+
+    isolation: isolate;
+}
+
+
+/* Soft garden atmosphere */
+
+.main-invitation::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255, 247, 216, 0.9),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(106, 132, 82, 0.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(106, 132, 82, 0.22),
+            transparent 30%
+        );
+
+    z-index: -2;
+}
+
+
+/* Fine texture */
+
+.main-invitation::after {
+    content: "";
+
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid
+        rgba(151, 124, 72, 0.45);
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* ==========================================
+   DECORATIVE VINES
+========================================== */
+
+.cover-decoration {
+    position: absolute;
+
+    font-size: 150px;
+
+    line-height: 1;
+
+    color: rgba(79, 104, 59, 0.42);
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 4px 8px
+            rgba(45, 60, 34, 0.08)
+        );
+}
+
+
+.top-left {
+    top: -35px;
+    left: -25px;
+
+    transform: rotate(-35deg);
+}
+
+
+.top-right {
+    top: -35px;
+    right: -25px;
+
+    transform: rotate(35deg) scaleX(-1);
+}
+
+
+.bottom-left {
+    bottom: -45px;
+    left: -25px;
+
+    transform: rotate(35deg) scaleY(-1);
+}
+
+
+.bottom-right {
+    bottom: -45px;
+    right: -25px;
+
+    transform: rotate(-35deg) scale(-1);
+}
+
+
+/* ==========================================
+   COVER CONTENT
+========================================== */
+
+.cover-content {
+    position: relative;
+
+    width: min(90%, 720px);
+
+    padding: 55px 30px 65px;
+
+    z-index: 3;
+}
+
+
+/* ==========================================
+   STARS
+========================================== */
+
+.cover-stars {
+    margin-bottom: 24px;
+
+    color: #a88a50;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    animation:
+        fairyTwinkle 3s ease-in-out infinite;
+}
+
+
+@keyframes fairyTwinkle {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+}
+
+
+/* ==========================================
+   SUBTITLE
+========================================== */
+
+.cover-subtitle {
+    font-family: "Cinzel", serif;
+
+    font-size: 11px;
+
+    letter-spacing: 7px;
+
+    color: #776342;
+
+    margin-bottom: 28px;
+}
+
+
+/* ==========================================
+   NAMES
+========================================== */
+
+.cover-content h1 {
+    margin: 0;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-weight: 400;
+
+    font-size:
+        clamp(72px, 11vw, 125px);
+
+    line-height: 0.8;
+
+    color: #435538;
+
+    text-shadow:
+        0 3px 0
+        rgba(255, 255, 255, 0.55),
+        0 10px 25px
+        rgba(60, 70, 45, 0.12);
+}
+
+
+.cover-content h1 span {
+    display: block;
+
+    margin:
+        25px 0 18px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(28px, 4vw, 42px);
+
+    font-weight: 400;
+
+    color: #a38750;
+
+    line-height: 1;
+}
+
+
+/* ==========================================
+   ORNAMENT
+========================================== */
+
+.cover-ornament {
+    margin: 25px 0 20px;
+
+    color: #b08d4e;
+
+    font-size: 38px;
+
+    text-shadow:
+        0 2px 8px
+        rgba(168, 138, 80, 0.25);
+}
+
+
+/* ==========================================
+   DATE
+========================================== */
+
+.cover-date {
+    font-family: "Cinzel", serif;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    color: #665438;
+
+    margin-bottom: 28px;
+}
+
+
+/* ==========================================
+   QUOTE
+========================================== */
+
+.cover-quote {
+    max-width: 440px;
+
+    margin: 0 auto 35px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    font-style: italic;
+
+    color: #75654c;
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.cover-button {
+    position: relative;
+
+    min-width: 220px;
+
+    padding: 15px 30px;
+
+    border:
+        1px solid
+        rgba(150, 122, 68, 0.75);
+
+    border-radius: 100px;
+
+    background:
+        rgba(255, 250, 235, 0.58);
+
+    color: #685333;
+
+    box-shadow:
+        0 8px 30px
+        rgba(82, 72, 49, 0.1);
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+
+.cover-button::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border:
+        1px solid
+        rgba(177, 148, 86, 0.3);
+
+    border-radius: inherit;
+
+    pointer-events: none;
+}
+
+
+.cover-button:hover {
+    transform: translateY(-5px);
+
+    background:
+        rgba(255, 252, 242, 0.85);
+
+    box-shadow:
+        0 14px 35px
+        rgba(82, 72, 49, 0.18);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .main-invitation::after {
+        inset: 10px;
+    }
+
+    .cover-content {
+        padding:
+            45px 18px
+            55px;
+    }
+
+    .cover-subtitle {
+        font-size: 9px;
+
+        letter-spacing: 4px;
+    }
+
+    .cover-content h1 {
+        font-size: 70px;
+    }
+
+    .cover-content h1 span {
+        margin:
+            22px 0 15px;
+
+        font-size: 30px;
+    }
+
+    .cover-date {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+
+    .cover-quote {
+        font-size: 13px;
+    }
+
+    .cover-decoration {
+        font-size: 90px;
+    }
+
+}
+
+/* ==========================================
+   FALLING FAIRY PETALS
+========================================== */
+
+.falling-petals {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* Setiap kelopak */
+
+.falling-petal {
+    position: absolute;
+
+    top: -60px;
+
+    left: 0;
+
+    width: 12px;
+    height: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8e8,
+            #e9d7a8
+        );
+
+    border-radius:
+        80% 20% 80% 20%;
+
+    opacity: 0.75;
+
+    filter:
+        drop-shadow(
+            0 2px 3px
+            rgba(90, 70, 40, 0.12)
+        );
+
+    animation:
+        petalFall
+        linear
+        infinite;
+}
+
+
+/* Beberapa kelopak lebih kecil */
+
+.falling-petal:nth-child(3n) {
+    width: 8px;
+    height: 13px;
+
+    opacity: 0.55;
+}
+
+
+/* Beberapa lebih besar */
+
+.falling-petal:nth-child(5n) {
+    width: 15px;
+    height: 21px;
+
+    opacity: 0.65;
+}
+
+
+/* ==========================================
+   FALLING ANIMATION
+========================================== */
+
+@keyframes petalFall {
+
+    0% {
+
+        transform:
+            translate3d(
+                0,
+                -80px,
+                0
+            )
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+
+    10% {
+
+        opacity: 0.8;
+    }
+
+
+    25% {
+
+        transform:
+            translate3d(
+                30px,
+                25vh,
+                0
+            )
+            rotate(100deg);
+    }
+
+
+    50% {
+
+        transform:
+            translate3d(
+                -35px,
+                50vh,
+                0
+            )
+            rotate(210deg);
+    }
+
+
+    75% {
+
+        transform:
+            translate3d(
+                45px,
+                75vh,
+                0
+            )
+            rotate(300deg);
+    }
+
+
+    90% {
+
+        opacity: 0.65;
+    }
+
+
+    100% {
+
+        transform:
+            translate3d(
+                -20px,
+                110vh,
+                0
+            )
+            rotate(420deg);
+
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   GENERAL SECTION
+========================================== */
+
+.section {
+    position: relative;
+
+    min-height: 100svh;
+
+    padding:
+        110px 7%
+        100px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f3ecd9,
+            #e4ead5
+        );
+}
+
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border:
+        1px solid
+        rgba(153, 127, 75, 0.28);
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   SECTION HEADING
+========================================== */
+
+.section-heading {
+    position: relative;
+
+    max-width: 650px;
+
+    margin:
+        0 auto 70px;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+.section-mini-title {
+    display: block;
+
+    margin-bottom: 15px;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: #8b7247;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-weight: 400;
+
+    font-size:
+        clamp(48px, 7vw, 78px);
+
+    color: #435538;
+
+    line-height: 1;
+}
+
+
+.section-ornament {
+    margin:
+        20px 0 15px;
+
+    font-size: 35px;
+
+    color: #a88a50;
+}
+
+
+.section-heading p {
+    max-width: 500px;
+
+    margin: auto;
+
+    color: #75664e;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+}
+
+
+/* ==========================================
+   COUPLE CONTAINER
+========================================== */
+
+.couple-container {
+    position: relative;
+
+    max-width: 1050px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+
+    z-index: 2;
+}
+
+
+/* ==========================================
+   COUPLE CARD
+========================================== */
+
+.couple-card {
+    text-align: center;
+}
+
+
+/* ==========================================
+   PHOTO
+========================================== */
+
+.couple-photo-frame {
+    position: relative;
+
+    width: min(300px, 100%);
+
+    aspect-ratio: 3 / 4;
+
+    margin: auto;
+
+    padding: 10px;
+
+    border:
+        1px solid
+        rgba(158, 129, 73, 0.7);
+
+    border-radius:
+        150px 150px 25px 25px;
+
+    background:
+        rgba(255, 250, 235, 0.55);
+
+    box-shadow:
+        0 20px 50px
+        rgba(65, 73, 48, 0.12);
+
+    overflow: visible;
+}
+
+
+.couple-photo-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 6px;
+
+    border:
+        1px solid
+        rgba(166, 137, 79, 0.35);
+
+    border-radius:
+        145px 145px 20px 20px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.couple-photo-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius:
+        140px 140px 18px 18px;
+}
+
+
+/* ==========================================
+   VINE
+========================================== */
+
+.photo-vine {
+    position: absolute;
+
+    top: -35px;
+
+    right: -30px;
+
+    font-size: 90px;
+
+    color:
+        rgba(72, 103, 58, 0.65);
+
+    transform:
+        rotate(25deg);
+
+    z-index: 4;
+}
+
+
+/* ==========================================
+   COUPLE INFO
+========================================== */
+
+.couple-info {
+    margin-top: 30px;
+}
+
+
+.couple-role {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #94784b;
+}
+
+
+.couple-info h3 {
+    margin: 0;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(48px, 6vw, 70px);
+
+    font-weight: 400;
+
+    color: #3e5134;
+}
+
+
+.couple-parents {
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #76664e;
+}
+
+
+.couple-parents span {
+    color: #4d5b40;
+
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   CONNECTOR
+========================================== */
+
+.couple-connector {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.couple-connector span {
+    width: 1px;
+
+    height: 90px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #ad8d52,
+            transparent
+        );
+}
+
+
+.couple-connector div {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border:
+        1px solid
+        #b39761;
+
+    border-radius: 50%;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 30px;
+
+    color: #a1844d;
+
+    background:
+        rgba(255, 250, 237, 0.7);
+
+    box-shadow:
+        0 5px 20px
+        rgba(83, 70, 43, 0.1);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .section {
+        padding:
+            90px 20px;
+    }
+
+
+    .section::before {
+        inset: 10px;
+    }
+
+
+    .section-heading {
+        margin-bottom: 55px;
+    }
+
+
+    .couple-container {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .couple-photo-frame {
+        width: min(280px, 85vw);
+    }
+
+
+    .couple-connector {
+        flex-direction: row;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        margin: 10px 0;
+    }
+
+
+    .couple-connector span {
+        width: 70px;
+        height: 1px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                #ad8d52,
+                transparent
+            );
+    }
+
+
+    .couple-connector div {
+        flex-shrink: 0;
+    }
+
+}
+
+/* =====================================================
+   PEMISAH COVER & HALAMAN ISI
+===================================================== */
+
+/* COVER = halaman penuh */
+#coverPage {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    z-index: 500;
+
+    overflow: hidden;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform .8s ease;
+}
+
+
+/* HALAMAN ISI AWALNYA TIDAK ADA */
+#invitationPage {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    z-index: 400;
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.03);
+
+    pointer-events: none;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform .8s ease;
+}
+
+
+/* =====================================================
+   SAAT UNDANGAN DIBUKA
+===================================================== */
+
+body.invitation-open #coverPage {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(1.04);
+
+    pointer-events: none;
+}
+
+
+body.invitation-open #invitationPage {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* Supaya body tidak ikut scroll ketika cover */
+body:not(.invitation-open) {
+    overflow: hidden;
+}
+
+
+/* Ketika sudah masuk isi */
+body.invitation-open {
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND HALAMAN ISI
+===================================================== */
+
+#invitationPage {
+    background:
+        linear-gradient(
+            rgba(18, 31, 20, .42),
+            rgba(18, 31, 20, .55)
+        ),
+        url("../../assets/images/bg isi.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* Isi halaman bisa scroll */
+#invitationPage .invitation-content {
+    position: relative;
+
+    min-height: 100%;
+
+    width: min(1100px, 92%);
+
+    margin: 0 auto;
+
+    padding:
+        100px 0
+        120px;
+}
+
+/* =====================================================
+   PEMISAH COVER DAN ISI
+   JANGAN MENGUBAH DESAIN COVER LAMA
+===================================================== */
+
+
+/* =========================
+   COVER
+========================= */
+
+#mainInvitation {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    z-index: 9000;
+}
+
+
+/* =========================
+   HALAMAN ISI
+========================= */
+
+#invitationPage {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    z-index: 8000;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: scale(1.02);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        visibility .8s ease;
+
+
+    /* BACKGROUND ISI */
+
+    background-image:
+        linear-gradient(
+            rgba(20, 34, 22, .38),
+            rgba(20, 34, 22, .58)
+        ),
+        url("../../assets/images/bg isi.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   SAAT BUKA UNDANGAN
+========================= */
+
+body.invitation-open #mainInvitation {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: scale(1.03);
+}
+
+
+body.invitation-open #invitationPage {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body:not(.invitation-open) {
+
+    overflow: hidden;
+}
+
+
+body.invitation-open {
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ISI
+========================= */
+
+#invitationPage .invitation-content {
+
+    position: relative;
+
+    width: min(1100px, 92%);
+
+    min-height: 100%;
+
+    margin: 0 auto;
+
+    padding:
+        90px 0 120px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    #invitationPage .invitation-content {
+
+        width: 90%;
+
+        padding:
+            70px 0 100px;
+    }
+
+}
+
+/* ==========================================
+   SECTION ISI — GLASS / TRANSPARAN
+========================================== */
+
+#invitationPage .section {
+    background: rgba(255, 255, 255, 0.07) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(235, 214, 160, 0.35);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* ==========================================
+   PERBAIKAN TEKS SECTION GLASS
+========================================== */
+
+#invitationPage .section {
+    background: rgba(255, 255, 255, 0.13) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(235, 214, 160, 0.38);
+
+    color: #f8f1df;
+}
+
+
+/* Judul kecil */
+#invitationPage .section-mini-title {
+    color: #e8d39b !important;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+
+/* Judul utama */
+#invitationPage .section-heading h2 {
+    color: #f8f1df !important;
+
+    text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.75);
+}
+
+
+/* Ornamen */
+#invitationPage .section-ornament {
+    color: #e3bd68 !important;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Deskripsi */
+#invitationPage .section-heading p {
+    color: #f3ead6 !important;
+
+    text-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.75);
+}
+
+
+/* ==========================================
+   TEKS PENGANTIN
+========================================== */
+
+#invitationPage .couple-role {
+    color: #e8d39b !important;
+
+    text-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.8);
+}
+
+
+#invitationPage .couple-info h3 {
+    color: #f8f1df !important;
+
+    text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+#invitationPage .couple-parents {
+    color: #f3ead6 !important;
+
+    text-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.8);
+}
+
+
+#invitationPage .couple-parents span {
+    color: #f8f1df !important;
+}
+
+
+/* Simbol & di tengah */
+#invitationPage .couple-connector div {
+    color: #d9b765 !important;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* =====================================================
+   ISI UNDANGAN - FAIRY TALE GLASS
+===================================================== */
+
+#invitationPage .glass-section {
+    margin-bottom: 45px;
+    padding: 85px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.055)
+        ) !important;
+
+    border: 1px solid rgba(235,214,160,.35);
+    border-radius: 28px;
+
+    backdrop-filter: blur(14px) saturate(115%);
+    -webkit-backdrop-filter: blur(14px) saturate(115%);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
+    color: #f8f1df;
+}
+
+
+/* ==========================================
+   QUOTE
+========================================== */
+
+.quote-card {
+    max-width: 850px;
+    margin: 40px auto 0;
+
+    padding: 55px 65px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.075);
+
+    border: 1px solid rgba(230,205,145,.3);
+
+    border-radius: 22px;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.12);
+}
+
+.quote-symbol {
+    font-family: Georgia, serif;
+    font-size: 70px;
+    line-height: .5;
+
+    color: #d8b66a;
+}
+
+.quote-text {
+    margin: 30px auto;
+
+    max-width: 700px;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+    line-height: 2;
+
+    color: #f8f1df;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.7);
+}
+
+.quote-line {
+    width: 80px;
+    height: 1px;
+
+    margin: 25px auto;
+
+    background: #d8b66a;
+}
+
+.quote-source {
+    color: #e5cb8c;
+
+    letter-spacing: 2px;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   COUNTDOWN
+========================================== */
+
+.countdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-top: 45px;
+}
+
+.countdown-item {
+    min-width: 110px;
+
+    text-align: center;
+}
+
+.countdown-item span {
+    display: block;
+
+    font-family: Georgia, serif;
+
+    font-size: 48px;
+
+    color: #f8f1df;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.7);
+}
+
+.countdown-item small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #e2c886;
+
+    letter-spacing: 2px;
+
+    font-size: 10px;
+}
+
+.countdown-divider {
+    font-size: 32px;
+    color: #d8b66a;
+}
+
+
+/* ==========================================
+   EVENT
+========================================== */
+
+.event-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 30px;
+
+    max-width: 900px;
+
+    margin: 45px auto 0;
+}
+
+.event-card {
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.075);
+
+    border: 1px solid rgba(235,214,160,.3);
+
+    border-radius: 22px;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.12);
+}
+
+.event-icon {
+    font-size: 38px;
+    color: #d8b66a;
+}
+
+.event-label {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #e5cb8c;
+}
+
+.event-card h3 {
+    margin: 10px 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    color: #f8f1df;
+}
+
+.event-divider {
+    margin: 20px 0;
+
+    color: #d8b66a;
+}
+
+.event-card p {
+    color: #f0e7d3;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.7);
+}
+
+
+/* ==========================================
+   GALERI
+========================================== */
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    grid-auto-rows: 220px;
+
+    gap: 15px;
+
+    margin-top: 45px;
+}
+
+.gallery-item {
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(235,214,160,.4);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform .6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.07);
+}
+
+.gallery-large {
+    grid-row: span 2;
+}
+
+.gallery-wide {
+    grid-column: span 2;
+}
+
+
+/* ==========================================
+   LOCATION
+========================================== */
+
+.location-card {
+    max-width: 650px;
+
+    margin: 40px auto 0;
+
+    padding: 45px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.075);
+
+    border: 1px solid rgba(235,214,160,.3);
+
+    border-radius: 22px;
+}
+
+.location-icon {
+    font-size: 45px;
+
+    color: #d8b66a;
+}
+
+.location-card h3 {
+    margin: 15px 0;
+
+    color: #f8f1df;
+
+    font-family: Georgia, serif;
+
+    font-size: 28px;
+}
+
+.location-card p {
+    color: #f0e7d3;
+
+    line-height: 1.8;
+}
+
+.location-button {
+    display: inline-flex;
+
+    margin-top: 25px;
+
+    text-decoration: none;
+}
+
+.map-wrapper {
+    width: 100%;
+    height: 320px;
+    margin-top: 28px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(235, 214, 160, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+@media (max-width: 700px) {
+    .map-wrapper {
+        height: 240px;
+    }
+}
+
+/* ==========================================
+   UCAPAN
+========================================== */
+
+.wish-form {
+    max-width: 650px;
+
+    margin: 40px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #e5cb8c;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(235,214,160,.35);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(0,0,0,.18);
+
+    color: #fff8e8;
+
+    font-family: inherit;
+
+    backdrop-filter: blur(8px);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255,255,255,.6);
+}
+
+.form-group select option {
+    color: #222;
+}
+
+.wish-form .magic-button {
+    display: block;
+
+    margin: 25px auto 0;
+}
+
+
+/* daftar ucapan */
+
+.wish-list {
+    display: grid;
+
+    gap: 15px;
+
+    max-width: 800px;
+
+    margin: 45px auto 0;
+}
+
+.wish-item {
+    padding: 22px;
+
+    background: rgba(255,255,255,.075);
+
+    border: 1px solid rgba(235,214,160,.25);
+
+    border-radius: 16px;
+}
+
+.wish-item strong {
+    color: #e5cb8c;
+}
+
+.wish-item .wish-attendance {
+    float: right;
+
+    font-size: 10px;
+
+    color: #d8b66a;
+}
+
+.wish-item p {
+    margin-bottom: 0;
+
+    color: #f3ead6;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   AMPLOP
+========================================== */
+
+.bank-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 25px;
+
+    max-width: 800px;
+
+    margin: 45px auto 0;
+}
+
+.bank-card {
+    padding: 35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.055)
+        );
+
+    border: 1px solid rgba(235,214,160,.35);
+
+    border-radius: 22px;
+}
+
+.bank-logo {
+    display: inline-block;
+
+    padding: 7px 15px;
+
+    border: 1px solid rgba(235,214,160,.5);
+
+    border-radius: 20px;
+
+    color: #e5cb8c;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.bank-label {
+    display: block;
+
+    margin-top: 20px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.bank-card h3 {
+    color: #f8f1df;
+
+    margin: 12px 0;
+}
+
+.account-number {
+    font-size: 23px;
+
+    letter-spacing: 2px;
+
+    color: #e5cb8c;
+}
+
+.account-name {
+    color: #f0e7d3;
+}
+
+.copy-account {
+    margin-top: 15px;
+
+    padding: 9px 18px;
+
+    border: 1px solid rgba(235,214,160,.45);
+
+    border-radius: 20px;
+
+    background: transparent;
+
+    color: #f8f1df;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   CLOSING
+========================================== */
+
+.closing-section {
+    min-height: 500px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.closing-content {
+    max-width: 650px;
+}
+
+.closing-stars {
+    color: #e5cb8c;
+
+    margin-bottom: 20px;
+}
+
+.closing-content h2 {
+    margin: 15px 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 55px;
+
+    color: #f8f1df;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.7);
+}
+
+.closing-content p {
+    color: #f0e7d3;
+
+    line-height: 1.9;
+}
+
+.closing-names {
+    margin-top: 35px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 48px;
+
+    color: #e5cb8c;
+}
+
+.closing-names span {
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    margin: 0 10px;
+}
+
+.closing-flower {
+    margin-top: 25px;
+
+    font-size: 35px;
+
+    color: #d8b66a;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    #invitationPage .glass-section {
+        padding: 65px 6%;
+
+        border-radius: 20px;
+
+        margin-bottom: 25px;
+    }
+
+    .quote-card {
+        padding: 35px 22px;
+    }
+
+    .quote-text {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .countdown-wrapper {
+        gap: 7px;
+    }
+
+    .countdown-item {
+        min-width: 60px;
+    }
+
+    .countdown-item span {
+        font-size: 28px;
+    }
+
+    .countdown-item small {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .countdown-divider {
+        font-size: 20px;
+    }
+
+    .event-container,
+    .bank-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+
+        grid-auto-rows: 160px;
+    }
+
+    .gallery-large {
+        grid-row: span 1;
+    }
+
+    .gallery-wide {
+        grid-column: span 2;
+    }
+
+    .location-card {
+        padding: 30px 20px;
+    }
+
+    .closing-content h2 {
+        font-size: 42px;
+    }
+
+    .closing-names {
+        font-size: 40px;
+    }
+
+}
+
+/* ==========================================
+   UKURAN SECTION ISI
+========================================== */
+
+#invitationPage,
+#profile {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#invitationPage .section,
+#profile.section {
+    width: min(920px, calc(100% - 40px));
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+
+    box-sizing: border-box;
+}
+
+/* Isi section jangan terlalu melebar */
+
+#invitationPage .section-heading {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    #invitationPage .section,
+    #profile.section {
+        width: calc(100% - 24px);
+
+        margin-bottom: 25px;
+
+        border-radius: 20px;
+    }
+
+}
+
+/* ==========================================
+   GOOGLE MAPS
+========================================== */
+
+.map-wrapper {
+    width: 100%;
+    height: 300px;
+
+    margin-top: 30px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(235, 214, 160, .35);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border: 0;
+
+    filter:
+        saturate(.8)
+        contrast(.95);
+}
+
+@media (max-width: 700px) {
+
+    .map-wrapper {
+        height: 230px;
+    }
+
+}
+
+/* ==========================================
+   GALLERY
+========================================== */
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    grid-auto-rows: 180px;
+
+    gap: 14px;
+
+    margin-top: 45px;
+}
+
+
+/* kartu foto */
+
+.gallery-item {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(235,214,160,.38);
+
+    background: rgba(255,255,255,.06);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+
+/* foto besar */
+
+.gallery-item.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+
+.gallery-photo {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+
+.gallery-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .7s ease,
+        filter .7s ease;
+}
+
+
+.gallery-photo:hover img {
+    transform: scale(1.08);
+
+    filter:
+        brightness(.82)
+        saturate(1.1);
+}
+
+
+/* ==========================================
+   LIKE
+========================================== */
+
+.gallery-like {
+    position: absolute;
+
+    right: 12px;
+    bottom: 12px;
+
+    z-index: 5;
+
+    min-width: 52px;
+    height: 36px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255,255,255,.4);
+
+    border-radius: 30px;
+
+    background: rgba(20,30,20,.45);
+
+    backdrop-filter: blur(8px);
+
+    color: #fff;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.gallery-like span {
+    font-size: 11px;
+
+    margin-left: 4px;
+}
+
+.gallery-like:hover {
+    background: rgba(235,214,160,.35);
+
+    transform: translateY(-2px);
+}
+
+.gallery-like.liked {
+    color: #f1c7c7;
+
+    border-color: rgba(255,210,210,.7);
+}
+
+
+/* ==========================================
+   LIGHTBOX
+========================================== */
+
+.gallery-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(5,10,6,.88);
+
+    backdrop-filter: blur(15px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.gallery-lightbox.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.gallery-lightbox img {
+    max-width: min(900px, 90vw);
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(235,214,160,.5);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.6);
+}
+
+
+.gallery-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255,255,255,.4);
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.1);
+
+    color: #fff;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+/* mobile */
+
+@media (max-width: 700px) {
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        grid-auto-rows: 150px;
+
+        gap: 10px;
+    }
+
+    .gallery-item.featured {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .gallery-lightbox {
+        padding: 15px;
+    }
+
+}
